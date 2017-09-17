@@ -1,5 +1,11 @@
 .gitignore
 
+/bck
+
+.idea
+*.iml
+*.xpi
+/work
 
 # Compiled class file
 *.class
