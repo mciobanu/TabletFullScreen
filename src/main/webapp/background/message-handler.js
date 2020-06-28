@@ -9,9 +9,14 @@
     function onRemoved() {
     }
 
+    let nonFullState = "normal";
+
     function onFullScreenGet(windowInfo) {
+        if (windowInfo.state !== "fullscreen") {
+            nonFullState = windowInfo.state;
+        }
         let updateInfo = {
-            state: windowInfo.state === "fullscreen" ? "normal" : "fullscreen"
+            state: windowInfo.state === "fullscreen" ? nonFullState : "fullscreen" // https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/windows/WindowState
         };
         let updating = browser.windows.update(windowInfo.id, updateInfo);
         updating.then(onFullScreenToggled, onError);
